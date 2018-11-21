@@ -1,0 +1,321 @@
+zhang@ubuntu:~$ sudo mysql -u root -p
+[sudo] password for zhang: 
+Enter password: 
+
+mysql> use hello_mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table Company123(
+    -> id int auto_increment primary key,
+    -> name varchar(30),
+    -> position varchar(30),
+    -> salary int);
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> alter table Company123 add isDelete int default 0;
+Query OK, 0 rows affected (0.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table Company321( id int auto_increment primary key, name varchar(30), position varchar(30), salary int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> alter table Company321 add isDelete int default 0;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables
+    -> ;
++-----------------------+
+| Tables_in_hello_mysql |
++-----------------------+
+| Company123            |
+| Company321            |
+| Pubg                  |
+| ShoppingCart          |
+| Wx                    |
++-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc Company123;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(30) | YES  |     | NULL    |                |
+| position | varchar(30) | YES  |     | NULL    |                |
+| salary   | int(11)     | YES  |     | NULL    |                |
+| isDelete | int(11)     | YES  |     | 0       |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.06 sec)
+
+mysql> desc Company321;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(30) | YES  |     | NULL    |                |
+| position | varchar(30) | YES  |     | NULL    |                |
+| salary   | int(11)     | YES  |     | NULL    |                |
+| isDelete | int(11)     | YES  |     | 0       |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> insert into Company123(id,name,position,salary) values(1,"zxc1","A","3000"),(2,"zxc2","B","3850"),(3,"zxc3","C","5315"),(4,"zxc3","D","3131"),(5,"zxc4","D","8351"),(6,"zxc5","E","3145");
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into Company123(name,position,salary) values("zxc7","F","6565"),("zxc2","G","2545"),("zxc8","H","4234"),("zxc9","J","34864"),("zxc10","K","23748"),("zxc11","L","7234");
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into Company123(name,position,salary) values("zxc12","Q","23"),("zxc2","G","2545"),("zxc8","H","4234"),("zxc9","J","34864"),("zxc10","K","23748"),("zxc11","L","7234");
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into Company123(name,position,salary) values("zxc12","Q","2323"),("zxc13","Y","32435"),("zxc14","S","6152"),("zxc15","V","85524"),("zxc16","O","24528"),("zxc17","P","52345");
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from Company123;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+|  1 | zxc1  | A        | 3000   |        0 |
+|  2 | zxc2  | B        | 3850   |        0 |
+|  3 | zxc3  | C        | 5315   |        0 |
+|  4 | zxc3  | D        | 3131   |        0 |
+|  5 | zxc4  | D        | 8351   |        0 |
+|  6 | zxc5  | E        | 3145   |        0 |
+|  7 | zxc7  | F        | 6565   |        0 |
+|  8 | zxc2  | G        | 2545   |        0 |
+|  9 | zxc8  | H        | 4234   |        0 |
+| 10 | zxc9  | J        | 34864  |        0 |
+| 11 | zxc10 | K        | 23748  |        0 |
+| 12 | zxc11 | L        | 7234   |        0 |
+| 13 | zxc12 | Q        | 23     |        0 |
+| 14 | zxc2  | G        | 2545   |        0 |
+| 15 | zxc8  | H        | 4234   |        0 |
+| 16 | zxc9  | J        | 34864  |        0 |
+| 17 | zxc10 | K        | 23748  |        0 |
+| 18 | zxc11 | L        | 7234   |        0 |
+| 19 | zxc12 | Q        | 2323   |        0 |
+| 20 | zxc13 | Y        | 32435  |        0 |
+| 21 | zxc14 | S        | 6152   |        0 |
+| 22 | zxc15 | V        | 85524  |        0 |
+| 23 | zxc16 | O        | 24528  |        0 |
+| 24 | zxc17 | P        | 52345  |        0 |
++----+-------+----------+--------+----------+
+
+mysql> insert into Company321(name,position,salary) values("asd1","A","4332"),("asd2","B","2231"),("asd3","C","3234"),("asd4","D","5345"),("asd5","E","6543"),("asd6","F","7234");
+Query OK, 6 rows affected (0.21 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into Company321(name,position,salary) values("asd7","G","4884"),("asd8","H","43164"),("asd9","I","21143"),("asd10","J","15323"),("asd11","K","33241"),("asd12","L","34113");
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into Company321(name,position,salary) values("asd13","M","4523"),("asd14","N","6554"),("asd15","O","21143"),("asd16","P","5323"),("asd17","R","6241"),("asd18","S","66413");
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from Company321;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+|  1 | asd1  | A        | 4332   |        0 |
+|  2 | asd2  | B        | 2231   |        0 |
+|  3 | asd3  | C        | 3234   |        0 |
+|  4 | asd4  | D        | 5345   |        0 |
+|  5 | asd5  | E        | 6543   |        0 |
+|  6 | asd6  | F        | 7234   |        0 |
+|  7 | asd7  | G        | 4884   |        0 |
+|  8 | asd8  | H        | 43164  |        0 |
+|  9 | asd9  | I        | 21143  |        0 |
+| 10 | asd10 | J        | 15323  |        0 |
+| 11 | asd11 | K        | 33241  |        0 |
+| 12 | asd12 | L        | 34113  |        0 |
+| 13 | asd13 | M        | 4523   |        0 |
+| 14 | asd14 | N        | 6554   |        0 |
+| 15 | asd15 | O        | 21143  |        0 |
+| 16 | asd16 | P        | 5323   |        0 |
+| 17 | asd17 | R        | 6241   |        0 |
+| 18 | asd18 | S        | 66413  |        0 |
++----+-------+----------+--------+----------+
+18 rows in set (0.04 sec)
+
+mysql> select max(salary) from Company123;
++-------------+
+| max(salary) |
++-------------+
+|       85524 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from Company321;
++-------------+
+| max(salary) |
++-------------+
+|       66413 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from Company123;
++-------------+
+| min(salary) |
++-------------+
+|          23 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from Company321;
++-------------+
+| min(salary) |
++-------------+
+|        2231 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from Company123;
++-------------+
+| sum(salary) |
++-------------+
+|      381937 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(salary) from Company321;
++-------------+
+| sum(salary) |
++-------------+
+|      290984 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select 2231>23;
++---------+
+| 2231>23 |
++---------+
+|       1 |
++---------+
+1 row in set (0.29 sec)
+
+mysql> select 85524>66413;
++-------------+
+| 85524>66413 |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from Company123 order by salary desc limit 0,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 22 | zxc15 | V        |  85524 |        0 |
+| 24 | zxc17 | P        |  52345 |        0 |
+| 16 | zxc9  | J        |  34864 |        0 |
+| 10 | zxc9  | J        |  34864 |        0 |
+| 20 | zxc13 | Y        |  32435 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.08 sec)
+
+mysql> select * from Company123 order by salary desc limit 5,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 23 | zxc16 | O        |  24528 |        0 |
+| 17 | zxc10 | K        |  23748 |        0 |
+| 11 | zxc10 | K        |  23748 |        0 |
+|  5 | zxc4  | D        |   8351 |        0 |
+| 18 | zxc11 | L        |   7234 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company123 order by salary desc limit 10,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 18 | zxc11 | L        |   7234 |        0 |
+|  7 | zxc7  | F        |   6565 |        0 |
+| 21 | zxc14 | S        |   6152 |        0 |
+|  3 | zxc3  | C        |   5315 |        0 |
+|  9 | zxc8  | H        |   4234 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company123 order by salary desc limit 15,5;
++----+------+----------+--------+----------+
+| id | name | position | salary | isDelete |
++----+------+----------+--------+----------+
+| 15 | zxc8 | H        |   4234 |        0 |
+|  2 | zxc2 | B        |   3850 |        0 |
+|  6 | zxc5 | E        |   3145 |        0 |
+|  4 | zxc3 | D        |   3131 |        0 |
+|  1 | zxc1 | A        |   3000 |        0 |
++----+------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company123 order by salary desc limit 20,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 14 | zxc2  | G        |   2545 |        0 |
+|  8 | zxc2  | G        |   2545 |        0 |
+| 19 | zxc12 | Q        |   2323 |        0 |
+| 13 | zxc12 | Q        |     23 |        0 |
++----+-------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Company321 order by salary desc limit 0,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 18 | asd18 | S        |  66413 |        0 |
+|  8 | asd8  | H        |  43164 |        0 |
+| 12 | asd12 | L        |  34113 |        0 |
+| 11 | asd11 | K        |  33241 |        0 |
+|  9 | asd9  | I        |  21143 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company321 order by salary desc limit 5,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+|  9 | asd9  | I        |  21143 |        0 |
+| 10 | asd10 | J        |  15323 |        0 |
+|  6 | asd6  | F        |   7234 |        0 |
+| 14 | asd14 | N        |   6554 |        0 |
+|  5 | asd5  | E        |   6543 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company321 order by salary desc limit 10,5;
++----+-------+----------+--------+----------+
+| id | name  | position | salary | isDelete |
++----+-------+----------+--------+----------+
+| 17 | asd17 | R        |   6241 |        0 |
+|  4 | asd4  | D        |   5345 |        0 |
+| 16 | asd16 | P        |   5323 |        0 |
+|  7 | asd7  | G        |   4884 |        0 |
+| 13 | asd13 | M        |   4523 |        0 |
++----+-------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Company321 order by salary desc limit 15,5;
++----+------+----------+--------+----------+
+| id | name | position | salary | isDelete |
++----+------+----------+--------+----------+
+|  1 | asd1 | A        |   4332 |        0 |
+|  3 | asd3 | C        |   3234 |        0 |
+|  2 | asd2 | B        |   2231 |        0 |
++----+------+----------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
